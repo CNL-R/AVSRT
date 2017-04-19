@@ -43,10 +43,12 @@ for j = 1:size(id,2)                                   %loop iterating through i
                 end
             end
             indalltrials = vertcat(indalltrials,tempdata); %concatenate temporary array to growing data array
+            
             data = vertcat(data,tempdata);                 %concatenate the temporary data to the growing data array
         end
         
     end
+    alltrials{j,:} = indalltrials;
     
     indremoveidx = find(indalltrials(:,2)<removethresh); %NOTE: WE ARE STILL INSIDE THE INDIVIDUAL PARTICIPANT LOOP; for this participant, find the trials where the response was less than removethresh
     indpossible = indalltrials;                          %create a new array that will only have realistic responses
