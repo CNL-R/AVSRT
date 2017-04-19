@@ -48,7 +48,7 @@ for j = 1:size(id,2)                                   %loop iterating through i
         end
         
     end
-    alltrials{j,:} = indalltrials;
+    alltrials{j,:} = indalltrials; %Stores all individual trial data for each participant for each individual array the dimensions are - trials x [trigger-value reaction-time ISI-from-prev-stim]
     
     indremoveidx = find(indalltrials(:,2)<removethresh); %NOTE: WE ARE STILL INSIDE THE INDIVIDUAL PARTICIPANT LOOP; for this participant, find the trials where the response was less than removethresh
     indpossible = indalltrials;                          %create a new array that will only have realistic responses
