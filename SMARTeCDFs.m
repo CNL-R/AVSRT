@@ -17,7 +17,7 @@ id(ismember(id,{'.','..'})) = [];                      %if the root folder is no
 nconds = 14;                                           %14 conditions (0=error, 1=click, 2=audio only, 3=visual only, 4=audiovisual only....)
 removethresh = 100;                                    %ms threshold for physiologically possible responses
 data = [];                                             %create empty data array, this will hold all the data in the order of the files, then stimuli, as presented
-indcell = {};                                          %placeholder for incoming individual participant data, will be stored in cell array as different participants will have different numbers of trials
+indcell = {};         %                                 %placeholder for incoming individual participant data, will be stored in cell array as different participants will have different numbers of trials
 inddata = [];                                          %place holder for incoming mean individual data, this is a standard array as each participant will have 1 mean, 1 std for each condition.
 for j = 1:size(id,2)                                   %loop iterating through individual data directories
     filelist = ls(fullfile(direc,id{j},'*log'));       %list the files in the directory that end with the .log extension
@@ -48,8 +48,11 @@ for j = 1:size(id,2)                                   %loop iterating through i
         end
         
     end
-    alltrials{j,:} = indalltrials; %Stores all individual trial data for each participant for each individual array the dimensions are - trials x [trigger-value reaction-time ISI-from-prev-stim]
-    
+%     alltrials{j,:} = indalltrials; %Stores all individual trial data for each participant for each individual array the dimensions are - trials x [trigger-value reaction-time ISI-from-prev-stim]
+%                                     % may require moving after the
+%                                     % indpossible evaluate if the data too
+%                                     % noisy
+%     
     indremoveidx = find(indalltrials(:,2)<removethresh); %NOTE: WE ARE STILL INSIDE THE INDIVIDUAL PARTICIPANT LOOP; for this participant, find the trials where the response was less than removethresh
     indpossible = indalltrials;                          %create a new array that will only have realistic responses
     indpossible(indremoveidx,:) = [];                    %remove the unrealistic responses
