@@ -1,4 +1,4 @@
-function [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum] = CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps )
+function [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum] = CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr, indseqcondcell,CDFsteps )
 %CDFcomparitor calculate an empirical cumulative distribution function for
 %three different conditions with the same evaluation intervals
 %   Detailed explanation goes here

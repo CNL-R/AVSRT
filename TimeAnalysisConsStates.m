@@ -36,15 +36,15 @@ CDFsteps=0.1;
 % 12,6   AV-AV-A
 % 12,9   AV-AV-V %%
 
- indconditionedcell=cell(ncond,ncond);
+ indseqcondcell=cell(ncond,ncond);
 
 for j=1:size(id,2), % the index of individual in the indcell
 
-    indconditionedcell=cell(ncond,ncond);% consequitive state seperation of individual cell, first preceeding cond, second current condition
+    indseqcondcell=cell(ncond,ncond);% consequitive state seperation of individual cell, first preceeding cond, second current condition
     for k=2:length(indcell{j}(:,1)), % scan a specific result and organise it in the possible consequitive states
         cond=indcell{j}(k,1);
         preccond=indcell{j}(k-1,1);
-        indconditionedcell{preccond,cond}=[indconditionedcell{preccond,cond}; indcell{j}(k,2)];
+        indseqcondcell{preccond,cond}=[indseqcondcell{preccond,cond}; indcell{j}(k,2)];
     end     %%%
    
 
@@ -54,10 +54,12 @@ for j=1:size(id,2), % the index of individual in the indcell
     condACurr=focusconds(1,2); % current condition
     condBPrec=focusconds(2,1); % preceeding condition
     condBCurr=focusconds(2,2); % current condition
-    condCPrec=focusconds(2,1); % preceeding condition
-    condCCurr=focusconds(2,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indconditionedcell,CDFsteps);
+    condCPrec=focusconds(3,1); % preceeding condition
+    condCCurr=focusconds(3,2); % current condition
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
+    set(0,'DefaultFigureVisible','off');% disable plot display because it is being saved
+    
     Hfig1=figure;  
     plot(cdevalpts,htC,'--b','LineWidth',2);% you may specify marker size too by 'MarkerSize',6
     hold on;
@@ -76,9 +78,9 @@ for j=1:size(id,2), % the index of individual in the indcell
     condACurr=focusconds(1,2); % current condition
     condBPrec=focusconds(2,1); % preceeding condition
     condBCurr=focusconds(2,2); % current condition
-    condCPrec=focusconds(2,1); % preceeding condition
-    condCCurr=focusconds(2,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indconditionedcell,CDFsteps);
+    condCPrec=focusconds(3,1); % preceeding condition
+    condCCurr=focusconds(3,2); % current condition
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     Hfig2=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
@@ -99,9 +101,9 @@ for j=1:size(id,2), % the index of individual in the indcell
     condACurr=focusconds(1,2); % current condition
     condBPrec=focusconds(2,1); % preceeding condition
     condBCurr=focusconds(2,2); % current condition
-    condCPrec=focusconds(2,1); % preceeding condition
-    condCCurr=focusconds(2,2); % current condition
-   [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indconditionedcell,CDFsteps);
+    condCPrec=focusconds(3,1); % preceeding condition
+    condCCurr=focusconds(3,2); % current condition
+   [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     Hfig3=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
@@ -122,9 +124,9 @@ for j=1:size(id,2), % the index of individual in the indcell
     condACurr=focusconds(1,2); % current condition
     condBPrec=focusconds(2,1); % preceeding condition
     condBCurr=focusconds(2,2); % current condition
-    condCPrec=focusconds(2,1); % preceeding condition
-    condCCurr=focusconds(2,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indconditionedcell,CDFsteps);
+    condCPrec=focusconds(3,1); % preceeding condition
+    condCCurr=focusconds(3,2); % current condition
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
 
     Hfig4=figure;
@@ -145,9 +147,9 @@ for j=1:size(id,2), % the index of individual in the indcell
     condACurr=focusconds(1,2); % current condition
     condBPrec=focusconds(2,1); % preceeding condition
     condBCurr=focusconds(2,2); % current condition
-    condCPrec=focusconds(2,1); % preceeding condition
-    condCCurr=focusconds(2,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indconditionedcell,CDFsteps);
+    condCPrec=focusconds(3,1); % preceeding condition
+    condCCurr=focusconds(3,2); % current condition
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     Hfig5=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
@@ -161,8 +163,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     savefig(Hfig5,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig5'));
     saveas(Hfig5,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
-
-
+    set(0,'DefaultFigureVisible','on');%enable plot display
    
 end % for 1:size(id,2)..
 
@@ -177,4 +178,6 @@ end % for 1:size(id,2)..
 % plot(binCenters, counts);
 
 %plot derivative of a function
+
+%format shortG
 %dydx = diff(y(:))./diff(x(:));
