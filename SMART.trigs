@@ -1,0 +1,15 @@
+"Trigger"	"Stimulus"
+0		Presentation Error
+1		Response
+2		Pure Audio
+3		Pure Visual
+4		Pure AudioVisual
+5		V -> A
+6		AV -> A
+7		A -> A
+8		V -> V
+9		AV -> V
+10		A -> V
+11		V -> AV
+12		AV -> AV
+13		A -> AV
