@@ -44,7 +44,7 @@ axis([100 400 -inf inf]);
 legend('AV response','min(tA,tV)','Audio','Visual');
 xlabel('Response delay ms');
 ylabel('CDF');
-title({'Comparision between min(tA,tV) and empirical AV response on average','-pure mode A-A,V-V,AV-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strjoin(id(j)),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
+title({'Comparision between min(tA,tV) and empirical AV response on average','-single mode A-A,V-V,AV-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds)))}); % id(excludeindvds) is the id number of excluded individuals and shall be convert to string
 hold off;
 savefig(Hfig1,strcat(Outdir,'\','Fig1'));
 saveas(Hfig1,strcat(Outdir,'\','Fig1.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -66,7 +66,7 @@ axis([100 400 -inf inf]);
 legend('AV response','min(tA,tV)','Audio','Visual');
 xlabel('Response delay ms');
 ylabel('CDF');
-title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode A-A,A-V,A-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
+title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode A-A,A-V,A-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds)))}); % id(excludeindvds) is the id number of excluded individuals and shall be convert to string
 hold off;
 savefig(Hfig2,strcat(Outdir,'\','Fig2'));
 saveas(Hfig2,strcat(Outdir,'\','Fig2.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -88,7 +88,7 @@ axis([100 400 -inf inf]);
 legend('AV response','min(tA,tV)','Audio','Visual');
 xlabel('Response delay ms');
 ylabel('CDF');
-title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode AV-A,AV-V,AV-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
+title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode AV-A,AV-V,AV-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds)))}); % id(excludeindvds) is the id number of excluded individuals and shall be convert to string
 hold off;
 savefig(Hfig3,strcat(Outdir,'\','Fig3'));
 saveas(Hfig3,strcat(Outdir,'\','Fig3.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -112,7 +112,7 @@ axis([100 400 -inf inf]);
 legend('AV response','min(tA,tV)','Audio','Visual');
 xlabel('Response delay ms');
 ylabel('CDF');
-title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode V-A,V-V,V-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
+title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode V-A,V-V,V-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds)))}); % id(excludeindvds) is the id number of excluded individuals and shall be convert to string
 hold off;
 savefig(Hfig4,strcat(Outdir,'\','Fig4'));
 saveas(Hfig4,strcat(Outdir,'\','Fig4.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -134,7 +134,7 @@ axis([100 400 -inf inf]);
 legend('AV response','min(tA,tV)','Audio','Visual');
 xlabel('Response delay ms');
 ylabel('CDF');
-title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode A-A,V-V,AV-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
+title({'Comparision between min(tA,tV) and empirical AV response on average','-multi mode A-A,V-V,AV-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds)))}); % id(excludeindvds) is the id number of excluded individuals and shall be convert to string
 hold off;
 savefig(Hfig5,strcat(Outdir,'\','Fig5'));
 saveas(Hfig5,strcat(Outdir,'\','Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name

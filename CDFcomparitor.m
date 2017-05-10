@@ -1,4 +1,4 @@
-function [cdevalpts,htA,htB,htC,h_min_tAtB] = CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps )
+function [cdevalpts,htA,htB,htC,h_min_tAtB,minA,modA,stdA,minB,modB,stdB,minC,modC,stdC] = CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps )
 %CDFcomparitor calculate an empirical cumulative distribution function for
 %three different conditions with the same evaluation intervals
 %   Detailed explanation goes here
@@ -7,6 +7,32 @@ function [cdevalpts,htA,htB,htC,h_min_tAtB] = CDFcomparitor(condA,condB,condC, i
   sortedcelltA=sort(indconditionedcell{focond(1)}); % sort individual conditioned cell
   sortedcelltB=sort(indconditionedcell{focond(2)}); % sort individual conditioned cell
   sortedcelltC=sort(indconditionedcell{focond(3)}); % sort individual conditioned cell
+  
+  minA=mean(sortedcelltA);
+  if mod(length(sortedcelltA),2)==0;
+     modA=0.5*(sortedcelltA(length(sortedcelltA)/2)+sortedcelltA(length(sortedcelltA)/2+1));
+  else
+      modA=sortedcelltA((length(sortedcelltA)+1)/2);
+  end    
+  stdA=std(sortedcelltA);
+  
+  
+  minB=mean(sortedcelltB);
+  if mod(length(sortedcelltB),2)==0;
+     modB=0.5*(sortedcelltB(length(sortedcelltB)/2)+sortedcelltB(length(sortedcelltB)/2+1));
+  else
+      modB=sortedcelltB((length(sortedcelltB)+1)/2);
+  end    
+  stdB=std(sortedcelltB);
+  
+  minC=mean(sortedcelltC);
+  if mod(length(sortedcelltC),2)==0;
+     modC=0.5*(sortedcelltC(length(sortedcelltC)/2)+sortedcelltC(length(sortedcelltC)/2+1));
+  else
+      modC=sortedcelltC((length(sortedcelltC)+1)/2);
+  end    
+  stdC=std(sortedcelltC);
+  
   
   mintAtB=min([sortedcelltA(1),sortedcelltB(1),sortedcelltC(1)]);
   maxtAtB=max([sortedcelltA(length(sortedcelltA)),sortedcelltB(length(sortedcelltB)),sortedcelltC(length(sortedcelltC))]);

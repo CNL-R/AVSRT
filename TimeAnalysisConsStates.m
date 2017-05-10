@@ -6,6 +6,7 @@
 
 ncond=13;
 CDFsteps=0.1;
+Outdir = uigetdir('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\','Select Output Directory for the Graphs!'); % this is the directory the output figures will be saved to
 
 % 2		Pure Audio
 % 3		Pure Visual
@@ -64,13 +65,16 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htC,'--b','LineWidth',2);% you may specify marker size too by 'MarkerSize',6
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-    legend('AV response','min(tA,tV)');
+    plot(cdevalpts,htA,'--m','LineWidth',2);
+    plot(cdevalpts,htB,'-.g','LineWidth',2);
+    axis([100 400 -inf inf]);
+    legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-single mode A-A-A,V-V-V,AV-AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))}); % id(j) is of type cell shall be convert to string
     hold off;
-    savefig(Hfig1,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig1'));
-    saveas(Hfig1,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig1.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
+    savefig(Hfig1,strcat(Outdir,'\',strjoin(id(j)),'Fig1'));
+    saveas(Hfig1,strcat(Outdir,'\',strjoin(id(j)),'Fig1.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
     %%%%%%%Fig 2%%%%%%%%%%%%%%%    
     focusconds=[[7 7];[8 8];[12 12]]; % Which combination of consequitive states will be compared
@@ -86,13 +90,16 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htC,'--b','LineWidth',2);
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-    legend('AV response','min(tA,tV)');
+    plot(cdevalpts,htA,'--m','LineWidth',2);
+    plot(cdevalpts,htB,'-.g','LineWidth',2);
+    axis([100 400 -inf inf]);
+    legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A-A,V-V-V,AV-AV-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))});
     hold off;
-    savefig(Hfig2,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig2'));
-    saveas(Hfig2,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig2.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
+    savefig(Hfig2,strcat(Outdir,'\',strjoin(id(j)),'Fig2'));
+    saveas(Hfig2,strcat(Outdir,'\',strjoin(id(j)),'Fig2.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
     
     %%%%%%%Fig 3%%%%%%%%%%%%%%% 
@@ -108,14 +115,17 @@ for j=1:size(id,2), % the index of individual in the indcell
     Hfig3=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
     hold on;
-    plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
+    plot(cdevalpts,htA,'--m','LineWidth',2);
+    plot(cdevalpts,htB,'-.g','LineWidth',2);
+    axis([100 400 -inf inf]);
+    legend('AV response','min(tA,tV)','Audio','Visual');
     legend('AV response','min(tA,tV)');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A-A,A-A-V,A-A-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))});
     hold off;
-    savefig(Hfig3,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig3'));
-    saveas(Hfig3,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig3.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
+    savefig(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3'));
+    saveas(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
     
     %%%%%%%Fig 4%%%%%%%%%%%%%
@@ -133,13 +143,16 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htC,'--b','LineWidth',2);% you may specify marker size too by 'MarkerSize',6
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-    legend('AV response','min(tA,tV)');
+    plot(cdevalpts,htA,'--m','LineWidth',2);
+    plot(cdevalpts,htB,'-.g','LineWidth',2);
+    axis([100 400 -inf inf]);
+    legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode V-V-V,V-V-A,V-V-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))}); % id(j) is of type cell shall be convert to string
     hold off;
-    savefig(Hfig4,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig4'));
-    saveas(Hfig4,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig4.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
+    savefig(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4'));
+    saveas(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
     %%%%%%%Fig 5%%%%%%%%%%%%%%%    
     focusconds=[[12 6];[12 9];[12 12]]; % Which combination of consequitive states will be compared
@@ -155,13 +168,16 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htC,'--b','LineWidth',2);
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-    legend('AV response','min(tA,tV)');
+    plot(cdevalpts,htA,'--m','LineWidth',2);
+    plot(cdevalpts,htB,'-.g','LineWidth',2);
+    axis([100 400 -inf inf]);
+    legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode AV-AV-A,AV-AV-V,AV-AV-AV ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))});
     hold off;
-    savefig(Hfig5,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig5'));
-    saveas(Hfig5,strcat('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\AllIndivConseqStates\',strjoin(id(j)),'Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
+    savefig(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5'));
+    saveas(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
     set(0,'DefaultFigureVisible','on');%enable plot display
    
