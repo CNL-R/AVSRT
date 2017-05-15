@@ -6,7 +6,7 @@
 
 ncond=13;
 CDFsteps=0.1;
-Outdir = uigetdir('D:\TestData\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\','Select Output Directory for the Graphs!'); % this is the directory the output figures will be saved to
+Outdir = uigetdir('D:\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\','Select Output Directory for the Graphs!'); % this is the directory the output figures will be saved to
 
 % 2		Pure Audio
 % 3		Pure Visual
@@ -57,7 +57,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     condBCurr=focusconds(2,2); % current condition
     condCPrec=focusconds(3,1); % preceeding condition
     condCCurr=focusconds(3,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     set(0,'DefaultFigureVisible','off');% disable plot display because it is being saved
     
@@ -71,7 +71,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-single mode A-A-A,V-V-V,AV-AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))}); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-single mode A-A-A,V-V-V,AV-AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum)),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig1,strcat(Outdir,'\',strjoin(id(j)),'Fig1'));
     saveas(Hfig1,strcat(Outdir,'\',strjoin(id(j)),'Fig1.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -84,7 +84,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     condBCurr=focusconds(2,2); % current condition
     condCPrec=focusconds(3,1); % preceeding condition
     condCCurr=focusconds(3,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     Hfig2=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
@@ -96,7 +96,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A-A,V-V-V,AV-AV-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))});
+    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A-A,V-V-V,AV-AV-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum)),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))});
     hold off;
     savefig(Hfig2,strcat(Outdir,'\',strjoin(id(j)),'Fig2'));
     saveas(Hfig2,strcat(Outdir,'\',strjoin(id(j)),'Fig2.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -110,7 +110,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     condBCurr=focusconds(2,2); % current condition
     condCPrec=focusconds(3,1); % preceeding condition
     condCCurr=focusconds(3,2); % current condition
-   [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
+   [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     Hfig3=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
@@ -122,7 +122,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     legend('AV response','min(tA,tV)');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A-A,A-A-V,A-A-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))});
+    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A-A,A-A-V,A-A-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum)),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))});
     hold off;
     savefig(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3'));
     saveas(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -136,7 +136,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     condBCurr=focusconds(2,2); % current condition
     condCPrec=focusconds(3,1); % preceeding condition
     condCCurr=focusconds(3,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
 
     Hfig4=figure;
@@ -149,7 +149,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode V-V-V,V-V-A,V-V-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))}); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode V-V-V,V-V-A,V-V-AV, ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum)),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4'));
     saveas(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -162,7 +162,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     condBCurr=focusconds(2,2); % current condition
     condCPrec=focusconds(3,1); % preceeding condition
     condCCurr=focusconds(3,2); % current condition
-    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
+    [cdevalpts,htA,htB,htC,h_min_tAtB,samplenum,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitorconseq(condAPrec,condACurr,condBPrec,condBCurr,condCPrec,condCCurr,indseqcondcell,CDFsteps);
 
     Hfig5=figure;
     plot(cdevalpts,htC,'--b','LineWidth',2);
@@ -174,7 +174,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     legend('AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode AV-AV-A,AV-AV-V,AV-AV-AV ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum))});
+    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode AV-AV-A,AV-AV-V,AV-AV-AV ','for individual: ',strjoin(id(j))),strcat('mimimum number of samples in each category: ',num2str(samplenum)),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))});
     hold off;
     savefig(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5'));
     saveas(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name

@@ -9,6 +9,31 @@ CDFsteps=0.1;
 
 Outdir = uigetdir('D:\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\','Select Output Directory for the Graphs!'); % this is the directory the output figures will be saved to
 
+
+% setting the vectors that stores all individual analysis
+
+htpureA=zeros(size(id,2));
+htpureV=htB;
+htpureAV=htC;
+htpuremin_tAtB=h_min_tAtB;
+htpureRM=hRM;
+cdevalptspure=cdevalpts;
+
+puremeanA=meanA;
+puremedA=medA;
+purestdA=stdA;
+puremeanV=meanB;
+puremedV=medB;
+purestdV=stdB;
+puremeanAV=meanC;
+puremedAV=medC;
+purestdAV=stdC;
+
+
+%%%end setting the vectors
+
+
+
 %################   Individual Analysis  ####################
 %############################################################
 indconditionedcell=cell(ncond,1);% conditioned individual cell

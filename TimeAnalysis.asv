@@ -12,7 +12,7 @@ Outdir = uigetdir('D:\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\','S
 %################   Individual Analysis  ####################
 %############################################################
 indconditionedcell=cell(ncond,1);% conditioned individual cell
-for j=1:size(id,2), % the index of individual in the indcell
+for j=1:size(id,2)-35, % the index of individual in the indcell
 
     for cond=2:ncond,
         condindx=find(indcell{j}(:,1)==cond);
@@ -25,18 +25,19 @@ for j=1:size(id,2), % the index of individual in the indcell
     condB=focusconds(2);
     condC=focusconds(3);
     [cdevalpts,htA,htB,htC,h_min_tAtB,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps);
-
-    DeviationPure=
+    hRM=htA+htB;
+    hRM(hRM>1)=1;
     
     
     Hfig1=figure;  
+    plot(cdevalpts,hRM,'-.c','LineWidth',2);
     plot(cdevalpts,htC,'--b','LineWidth',2);% you may specify marker size too by 'MarkerSize',6
-    hold on;
+
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-pure mode A-A,V-V,AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
@@ -51,16 +52,19 @@ for j=1:size(id,2), % the index of individual in the indcell
     condB=focusconds(2);
     condC=focusconds(3);
     [cdevalpts,htA,htB,htC,h_min_tAtB,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps);
-
+    hRM=htA+htB;
+    hRM(hRM>1)=1;
+    
     Hfig2=figure;
+    plot(cdevalpts,hRM,'-.c','LineWidth',2);
     plot(cdevalpts,htC,'--b','LineWidth',2);% you may specify marker size too by 'MarkerSize',6
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('AV response','min(tA,tV)','Audio','Visual');
-     xlabel('Response delay ms');
+    legend('RM','AV response','min(tA,tV)','Audio','Visual');
+    xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A,A-V,A-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
@@ -73,15 +77,18 @@ for j=1:size(id,2), % the index of individual in the indcell
     condB=focusconds(2);
     condC=focusconds(3);
     [cdevalpts,htA,htB,htC,h_min_tAtB,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps);
-
+    hRM=htA+htB;
+    hRM(hRM>1)=1;
+    
     Hfig3=figure;
+    plot(cdevalpts,hRM,'-.c','LineWidth',2);
     plot(cdevalpts,htC,'--b','LineWidth',2);
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode AV-A,AV-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
@@ -97,15 +104,18 @@ for j=1:size(id,2), % the index of individual in the indcell
     condB=focusconds(2);
     condC=focusconds(3);
     [cdevalpts,htA,htB,htC,h_min_tAtB,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps);
-
+    hRM=htA+htB;
+    hRM(hRM>1)=1;
+    
     Hfig4=figure;
+    plot(cdevalpts,hRM,'-.c','LineWidth',2);
     plot(cdevalpts,htC,'--b','LineWidth',2);
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode V-A,V-V,V-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
@@ -119,15 +129,18 @@ for j=1:size(id,2), % the index of individual in the indcell
     condB=focusconds(2);
     condC=focusconds(3);
     [cdevalpts,htA,htB,htC,h_min_tAtB,meanA,modA,stdA,meanB,modB,stdB,meanC,modC,stdC]=CDFcomparitor(condA,condB,condC, indconditionedcell,CDFsteps);
-
+    hRM=htA+htB;
+    hRM(hRM>1)=1;
+    
     Hfig5=figure;
+    plot(cdevalpts,hRM,'-.c','LineWidth',2);
     plot(cdevalpts,htC,'--b','LineWidth',2);
     hold on;
     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','min(tA,tV)','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A,V-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(modA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(modB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
