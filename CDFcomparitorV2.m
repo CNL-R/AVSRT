@@ -1,4 +1,4 @@
-function [cdevalpts,htA,htB,htC,h_min_tAtB,htIRM,meanA,medA,stdA,meanB,medB,stdB,meanC,medC,stdC,sortedcelltA,sortedcelltB,sortedcelltC,sortedcelltIRM] = CDFcomparitorV2(condA,condB,condC, indconditionedcell,CDFsteps )
+function [cdevalpts,htA,htB,htC,h_min_tAtB,htIRM,meanA,medA,stdA,meanB,medB,stdB,meanC,medC,stdC,sortedcelltA,sortedcelltB,sortedcelltC,sortedcelltIRM,sortedcellSimRM] = CDFcomparitorV2(condA,condB,condC, indconditionedcell,CDFsteps )
 %CDFcomparitor calculate an empirical cumulative distribution function for
 %three different conditions with the same evaluation intervals
 %   Detailed explanation goes here
@@ -41,7 +41,7 @@ function [cdevalpts,htA,htB,htC,h_min_tAtB,htIRM,meanA,medA,stdA,meanB,medB,stdB
   end    
   stdC=std(sortedcelltC);
   
-  
+
   mintAtB=min([sortedcelltA(1),sortedcelltB(1),sortedcelltC(1)]);
   maxtAtB=max([sortedcelltA(length(sortedcelltA)),sortedcelltB(length(sortedcelltB)),sortedcelltC(length(sortedcelltC))]);
   cdevalpts=mintAtB:CDFsteps:maxtAtB;  % This is common evaluation points used for all CDF s
@@ -59,8 +59,32 @@ for ievth=1:length(cdevalpts),
     htIRM(ievth)=sum(sortedcelltIRM <=evth)/length(sortedcelltIRM); % this should match h_min_tAtB to very good extent , this is tested and give very similar response as h_min_tAtB
 end
 
-    h_min_tAtB=htA+htB-htB.*htA  ;% this is the CDf distribution of min(tA,tB) considering that tA and tB are independent random 
+  h_min_tAtB=htA+htB-htB.*htA  ;% this is the CDf distribution of min(tA,tB) considering that tA and tB are independent random
+
+  %%% we build a simulated version sortedcellAplusB such that the sample
+  %%% times generate an hRM equal to Race Model. Note a simple
+  %%% accumulate of events A and B will generate CDF equal to
+  %%% 0.5*(CDF_A+CDF_B) thus we normalise it by removing all events that
+  %%% have time greater than a threshold time euqal to hRM=1
   
+  hRM=htA+htB;
+  hRM(hRM>1)=1;
+  ind_half=find(hRM==1,1);
+  t_half=cdevalpts(ind_half);
+  celltNormAplusB=[sortedcelltA(sortedcelltA <t_half); sortedcelltB(sortedcelltB <t_half)];
+  sortedcellSimRM=sort(celltNormAplusB);
+
+%%%%%% this part is to test if CDF of sortedcellSimRM will match hRM and it does!  
+%   htSimRM=zeros(size(cdevalpts));% this should match h_min_tAtB to very good extent , this is tested and give very similar response as h_min_tAtB
+% 
+% for ievth=1:length(cdevalpts),
+%     evth=cdevalpts(ievth);
+%     htSimRM(ievth)=sum(sortedcellSimRM <=evth)/length(sortedcellSimRM); % this should match h_min_tAtB to very good extent , this is tested and give very similar response as h_min_tAtB
+% end
+%%%%%%%%%
+
+
+
 %   implemented CDF test
 %     figure;
 %     [hteA,teA] = ecdf(indconditionedcell{focond(1)}); %emperical CDF
