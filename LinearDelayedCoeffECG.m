@@ -5,20 +5,20 @@
 % Mean Squerred Error
 % negative values for alpha and beta are excluded from optimization problem
 % by assigning a very large cost
-close all; %close all previously visible figures
-DelayGridA=-1:1; % this is the number of sample delays that should be applied to Audio signal in the forward or backward direction before combining to Video signal
-DelayGridV=-1:1; % this is the number of sample delays that should be applied to Video signal in the forward or backward direction before combining to Audio signal
+%close all; %close all previously visible figures
+DelayGridA=0:1; % this is the number of sample delays that should be applied to Audio signal in the forward or backward direction before combining to Video signal
+DelayGridV=0:1; % this is the number of sample delays that should be applied to Video signal in the forward or backward direction before combining to Audio signal
 % DelayGrid should be such that adding them to corrperiod will not go over the time index of ERPavg
 MaxDelayA=DelayGridA(length(DelayGridA));
 MinDelayA=DelayGridA(1);
 MaxDelayV=DelayGridV(length(DelayGridV));
 MinDelayV=DelayGridV(1);
-corrperiod=100:410; % this is the interval the correlation of signals are calculated over each other to be used in solving alpha and beta equations
+corrperiod=261:300; % this is the interval the correlation of signals are calculated over each other to be used in solving alpha and beta equations
 %assuming no delay on combining A and V
 hsz=size(ERPavg);
 alpha=zeros(hsz(1,1),length(DelayGridA),length(DelayGridV)); % coeeficient corresponding to V contribution, hsz(1,1) represent the number of individuals
 beta=zeros(hsz(1,1),length(DelayGridA),length(DelayGridV));  % coeeficient corresponding to A contribution, hsz(1,1) represent the number of individuals
-
+comcondlist=[4 7 10];
 indvd=zeros(1,16); % stores individual id numbers
 indvd(1)=11801451;
 indvd(2)=18959514;
@@ -78,9 +78,9 @@ optDelayInd=zeros(hsz(1,1),2); % stores the index of optimum delay in audio and 
 for i =1:hsz(1,1), % draw one EEG signal for all individuals
 
     
-    resA=squeeze(ERPavg(i,1,11,:)); %pureA
-    resV=squeeze(ERPavg(i,2,11,:)); %pureV
-    resAV=squeeze(ERPavg(i,3,11,:)); %pureAV
+    resA=squeeze(ERPavg(i,comcondlist(1),11,:)); %pureA
+    resV=squeeze(ERPavg(i,comcondlist(2),11,:)); %pureV
+    resAV=squeeze(ERPavg(i,comcondlist(3),11,:)); %pureAV
     
     for j=1:length(DelayGridA),
         for k=1:length(DelayGridV),
@@ -150,9 +150,10 @@ aveoptDelayV=0;
 
 for i =1:hsz(1,1),
     aveoptcomb=aveoptcomb+optcomb(i,:)/hsz(1,1);
-    averesAV=averesAV+squeeze(ERPavg(i,3,11,:)).'*1/hsz(1,1);  
-    averesA=averesA+squeeze(ERPavg(i,1,11,:)).'*1/hsz(1,1); 
-    averesV=averesV+squeeze(ERPavg(i,2,11,:)).'*1/hsz(1,1);
+    averesA=averesA+squeeze(ERPavg(i,comcondlist(1),11,:)).'*1/hsz(1,1);  % second index for condition
+    averesV=averesV+squeeze(ERPavg(i,comcondlist(2),11,:)).'*1/hsz(1,1);
+    averesAV=averesAV+squeeze(ERPavg(i,comcondlist(3),11,:)).'*1/hsz(1,1);  
+ 
     aveoptalpha=aveoptalpha+optalpha(1,i).'*1/hsz(1,1);  
     aveoptbeta=aveoptbeta+optbeta(1,i).'*1/hsz(1,1);  
     aveoptDelayA=aveoptDelayA+optDelayA(1,i)*1/hsz(1,1);
@@ -161,55 +162,67 @@ end
 averesAplusV=averesA+averesV;
 
 figure;
+plot(averesA);
+hold;
+plot(averesV);
+plot(averesAV);
+plot(averesAplusV);
+plot(aveoptcomb);
+hold;
+legend('A','V','AV','A+V','\alpha V+\beta A');
+title({'Total Conditioned Average EEG signal of pure trials at H28 for conditions: ',num2str(comcondlist) });
+
+figure;
 plot(averesAV-averesAplusV);
 hold;
 plot(averesAV-aveoptcomb);
 hold;
 legend('AV-(A+V)','AV-(\alpha V+\beta A)');
 title({'Average Error of AV EEG from predicted signals at H28 in pure blocks from all individuals', strcat('average \alpha=',num2str(aveoptalpha),', average \beta=',num2str(aveoptbeta),',average OptDelayA=',num2str(aveoptDelayA), ',average OptDelayV=',num2str(aveoptDelayV)   ) }); 
-    
-
-figure;
-plot(optalpha);
-hold;
-plot(optbeta);
-hold;
-legend('Optimum \alpha','Optimum \beta)');
-title('the optimum \alpha and \beta trends versus individual');
 
 
-for i =1:hsz(1,1), % draw one EEG signal for all individuals
-  
-    resA=zeros(i,512);
-    resV=zeros(i,512);
-    resAV=zeros(i,512);
 
-    resA=squeeze(ERPavg(i,1,11,:)); %pureA
-    resV=squeeze(ERPavg(i,2,11,:)); %pureV
-    resAV=squeeze(ERPavg(i,3,11,:)); %pureAV
-    resAplusV=resA+resV;
-    resoptcomb=optcomb(i,:).'; % transpose vector to agree with others      
-    
-    figure;
-    plot(resA);
-    hold;
-    plot(resV);
-    plot(resAV);
-    plot(resAplusV);
-    plot(resoptcomb);
-    hold;
-    legend('A','V','AV','A+V','\alpha V+\beta A');
-    title({'Average EEG signal of pure trials at H28',  strcat('for individial: ',num2str(indvd(i))),  strcat('\alpha=',num2str(alpha(i)),', \beta=',num2str(beta(i)), ', \beta=',num2str(beta(i)),',OptDelayA=',num2str(optDelayA(1,i)), ',OptDelayV=',num2str(optDelayV(1,i)) )});
- 
-    figure;
-    plot(resAV-resAplusV);
-    hold;
-    plot(resAV-resoptcomb);
-    hold;
-    legend('AV-(A+V)','AV-(\alpha V+\beta A)');
-    title({'Average Error of AV EEG from predicted signals at H28 in pure blocks',  strcat('for individial: ',num2str(indvd(i))),  strcat('\alpha=',num2str(alpha(i)),', \beta=',num2str(beta(i)),',OptDelayA=',num2str(optDelayA(1,i)), ',OptDelayV=',num2str(optDelayV(1,i))   ) }); 
-   
-end 
+% figure;
+% plot(optalpha);
+% hold;
+% plot(optbeta);
+% hold;
+% legend('Optimum \alpha','Optimum \beta)');
+% title('the optimum \alpha and \beta trends versus individual');
+
+
+% for i =1:(hsz(1,1)-15), % draw one EEG signal for each individuals
+%   
+%     resA=zeros(i,512);
+%     resV=zeros(i,512);
+%     resAV=zeros(i,512);
+% 
+%     resA=squeeze(ERPavg(i,comcondlist(1),11,:)); %pureA
+%     resV=squeeze(ERPavg(i,comcondlist(2),11,:)); %pureV
+%     resAV=squeeze(ERPavg(i,comcondlist(3),11,:)); %pureAV
+%     resAplusV=resA+resV;
+%     resoptcomb=optcomb(i,:).'; % transpose vector to agree with others      
+%     
+%     figure;
+%     plot(resA);
+%     hold;
+%     plot(resV);
+%     plot(resAV);
+%     plot(resAplusV);
+%     plot(resoptcomb);
+%     hold;
+%     legend('A','V','AV','A+V','\alpha V+\beta A');
+%     title({'Average EEG signal of pure trials at H28',  strcat('for individial: ',num2str(indvd(i))),  strcat('\alpha=',num2str(alpha(i)), ', \beta=',num2str(beta(i)),',OptDelayA=',num2str(optDelayA(1,i)), ',OptDelayV=',num2str(optDelayV(1,i)) )});
+%  
+%     figure;
+%     plot(resAV-resAplusV);
+%     hold;
+%     plot(resAV-resoptcomb);
+%     hold;
+%     legend('AV-(A+V)','AV-(\alpha V+\beta A)');
+%     title({'Average Error of AV EEG from predicted signals at H28 in pure blocks',  strcat('for individial: ',num2str(indvd(i))),  strcat('\alpha=',num2str(alpha(i)),', \beta=',num2str(beta(i)),',OptDelayA=',num2str(optDelayA(1,i)), ',OptDelayV=',num2str(optDelayV(1,i))   ) }); 
+%    
+% end 
 
 %Averaging calculation for preset conditions
 

@@ -1,17 +1,17 @@
-tsm=[0:0.001:300];
+tsm=[0:0.001:14];
 thconfidence=0.9;
-stconfidence=0.01;
+stconfidence=0.1;
 
 st_x=0.5; % this is the start time for firing of sensors i.e. reaching the start confidence level, stconfidence, which assumed to remain fixed
 st_y=0.5; % this is the start time for firing of sensors i.e. reaching the start confidence level, stconfidence, which assumed to remain fixed
-rt_x=200;   % is the time x get to thconfidence level
-rt_y=100;   % is the time y get to thconfidence level
-al_x=1/(rt_x-st_x)*(log(1/stconfidence-1)-log(1/thconfidence-1));   % sigmoid spreading parameter for x
+rt_x=4;   % is the time x get to thconfidence level
+rt_y=5;   % is the time y get to thconfidence level
+al_x=1;   % sigmoid spreading parameter
+al_y=0.5; % sigmoid spreading parameter
 c_x=rt_x+1/al_x*log(1/thconfidence-1);
-
-al_y=1/(rt_y-st_y)*(log(1/stconfidence-1)-log(1/thconfidence-1));   % sigmoid spreading parameter for y
 c_y=rt_y+1/al_y*log(1/thconfidence-1);
 
+alpha
 
 
 sigx=sigmf(tsm,[al_x c_x]);

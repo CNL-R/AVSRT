@@ -1,0 +1,30 @@
+function [ averesA,averesV,averesAV ] = CondPhysiology(comcondlist,ERPavg,indvd )
+%UNTITLED Summary of this function goes here
+
+    resA=squeeze(ERPavg(i,comcondlist(1),11,:)); %pureA
+    resV=squeeze(ERPavg(i,comcondlist(2),11,:)); %pureV
+    resAV=squeeze(ERPavg(i,comcondlist(3),11,:)); %pureAV
+
+end
+
+% %this was because of a preprocessing step that reallocated values
+% 	1=pureA
+% 	2=pureV
+% 	3=pureAV
+% 	4=V->A
+% 	5=AV->A
+% 	6=A->A
+% 	7=V->V
+% 	8=AV->V
+% 	9=A->V
+% 	10=V->AV
+% 	11=AV->AV
+% 	12=A->AV
+% 	*virtual conditions*
+% 	13=1+2
+% 	14=6+7
+% 	15=4+9
+% 	16=50% combination of 11 and 12 to encompass "AV switch" but without doubling n
+% 	17=13-3
+% 	18=14-11
+% 	19=15-16
