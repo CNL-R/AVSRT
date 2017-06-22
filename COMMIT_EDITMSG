@@ -1,0 +1,4 @@
+bug fixed for both CDFcomparitorconseq.m and TimeAnalysisConsStates.m
+
+Both seems to work fine but not enough samples  to create nice CDF for
+some cases.
