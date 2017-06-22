@@ -11,7 +11,7 @@ CDFsteps=0.1;
 seqcondcell=cell(ncond,ncond);% conditioned individual cell
 excludeindvds=[]; % this is the id index of individuals which should be excluded from analysis due to unreliable or impossible results or wrong measurements
 
-O%utdir = uigetdir('D:\Arian\Projects\SMART\Outputs\mintAtBHypoth\Average\','Select Output Directory for the Graphs!'); 
+%Outdir = uigetdir('D:\Arian\Projects\SMART\Outputs\mintAtBHypoth\Average\','Select Output Directory for the Graphs!'); 
 
 % extracte individual and cumulative response times based on current and
 % previous conditions
