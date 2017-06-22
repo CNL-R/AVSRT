@@ -50,7 +50,7 @@ for j=1:size(id,2), % the index of individual in the indcell
    
 
     %%%%%%%Fig 1%%%%%%%%%%%%%
-    focusconds=[[2 2];[3 3];[4 4]]; % Which combination of consequitive states will be compared
+    focusconds=[[2 2];[3 3];[4 4]]; % Which combination of consequitive states will be compared, remember this equivalent to three consequitive state because each condition is a combination of two
     condAPrec=focusconds(1,1); % preceeding condition
     condACurr=focusconds(1,2); % current condition
     condBPrec=focusconds(2,1); % preceeding condition

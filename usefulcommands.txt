@@ -1,0 +1,16 @@
+p1 = [2 3];                         % First Point
+p2 = [9 8];                         % Second Point
+dp = p2-p1;                         % Difference
+
+figure(1)
+quiver(p1(1),p1(2),dp(1),dp(2),0); % draw an arrow
+
+axis([0  10    0  10])
+text(p1(1),p1(2), sprintf('(%.0f,%.0f)',p1))
+---------------
+drawArrow = @(x,y) quiver( x(1),y(1),x(2)-x(1),y(2)-y(1),0 )    
+
+x1 = [10 30];
+y1 = [10 30];
+
+drawArrow(x1,y1); hold on
