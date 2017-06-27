@@ -338,7 +338,6 @@ for j=1:size(id,2), % the index of individual in the indcell
     hold off;
     savefig(Hfig8,strcat(Outdir,'\',strjoin(id(j)),'Fig8'));
     saveas(Hfig8,strcat(Outdir,'\',strjoin(id(j)),'Fig8.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
-
     
 end % for 1:size(id,2)..
 %################ END Individual Analysis  ####################

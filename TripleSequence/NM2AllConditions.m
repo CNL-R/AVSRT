@@ -1,4 +1,3 @@
-
 %%%%%%%%%%%
 %%PHASE I%%
 %%%%%%%%%%%
@@ -348,3 +347,4 @@ xlswrite(filename,outputSeparate(:,1:2),1,'B1:C30');
 xlswrite(filename,output(:,1:2),1,'F1:G14');
 xlswrite(filename,inddataSeparate(:,:,1),1,'J2:AM35');
 xlswrite(filename,inddata(:,:,1),1,'J40:W73');
+

@@ -49,7 +49,6 @@ for i=1:meassize(1,1),
 end
 [Pmat4,Sigmat4,FiltSigmat4] = Anova1Heatmap(sampleperiod*reducedresolution,adjsigframe,filtth,alphath,timecolumn,electrodecolumn,'filtered respswitch-resprepeat','time','electrode',ElecTimeReduced );
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%
 ElecTimeCut=sw_rep; 
 [Pmat5,Sigmat5,FiltSigmat5] = Anova1Heatmap(sampleperiod,adjsigframe,filtth,alphath,timecolumn,electrodecolumn,'switch-repeat','time','electrode',ElecTimeCut );
