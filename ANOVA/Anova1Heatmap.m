@@ -7,7 +7,8 @@
 function [ Pmat,Sigmat, FiltSigmat ] = Anova1Heatmap(sampleperiod,adjsigframe,filtth,alphath,timecolumn,electrodecolumn,Xtick,Xticklabel,Ytick,Yticklabel,Title,XLabel,YLabel,expdata1)
 % adjsigframe specify the number of adjacent significant violation time frame that requires to consider a violation in time a valid violation   
 % Pmat is the matrix of p values over time and electrode
-% Sigmat shows the significant of p values upon the alphath
+% Sigmat stores only the significant p values compared with the alphath and
+% assume the rest as alphath
 % FiltSigmat is the filtered Sigmat considering adjsigframe criteria in the time domain  
 % expdata1 is the input Matrix contains all the data
 % timecolumn,electrodecolumn are the columns of the matrix refering to the
@@ -44,7 +45,11 @@ for i=1:1:tindexmax,
     for j=1:electmax,
         [p1,tb1]= Anova1Conditioned(conditioncolumn,sessioncolumn,subjectcolumn,alphath,i,j,expdata1);
         Pmat(i,j)=p1;
-        Sigmat(i,j)=(p1<alphath);
+        if p1<alphath,
+            Sigmat(i,j)=p1;
+        else
+            Sigmat(i,j)=alphath;
+        end    
     end
 end
 
@@ -70,7 +75,8 @@ end
 %     end
 % end
 
-illusmap=(Pmat.*Sigmat).';
+%illusmap=(Pmat).'; if you want to show all the P-values without filtering
+illusmap=Sigmat.';
 % next line flip the columns to reflect the order requested i.e [D1:D32 C1:C32 E1:E32 G1:G32 B1:B32 F1:F32 A1:A32]
 OrderedIllusmap=[illusmap(97:128,:); illusmap(65:96,:); illusmap(129:160,:); illusmap(193:224,:); illusmap(33:64,:); illusmap(161:192,:); illusmap(1:32,:)];% because illusmap was transposed of Pmat
 
@@ -97,7 +103,11 @@ else
 end
 
 axis on;
-colormap(jet);
+
+cmap=colormap(jet);
+cmap=flipud(cmap);
+colormap(cmap);
+%colormap(jet);
 colorbar;
     
 ax = gca;
