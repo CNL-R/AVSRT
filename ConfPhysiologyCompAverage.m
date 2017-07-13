@@ -17,7 +17,7 @@ Outdir = uigetdir('D:\Arian\Projects\SMART\Outputs\Physiology\','Select Output D
 
 for j=1:length(Electrodelist),
    
-   comcondlist=[1,6,4,5]; % 6-A-A 4-V-A 5-AV-A
+   comcondlist=[1,6,4,5]; % 6-A-A 4-V-A 5-AV-A , compare command list
    %%%%%%%%%%%%%%%%%%%%
    
        [resPureA,resA,resV,resAV,avePureA,averesA,averesV,averesAV] = PhysExtract(comcondlist,ERPavg,Electrodelist(j));
