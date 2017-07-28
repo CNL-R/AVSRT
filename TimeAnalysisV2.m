@@ -127,11 +127,11 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('RM','AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','RM No.2','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-pure mode A-A,V-V,AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
- %    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-pure mode A-A,V-V,AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f')) , strcat('mean(\tau_{AV})=',num2str(meanC,'%.1f'), ', median(\tau_{AV})=',num2str(medC,'%.1f'),', std(\tau_{AV})=',num2str(stdC,'%.1f')      ) }); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical RM No.2 and empirical AV response',strcat('-pure mode A-A,V-V,AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
+ %    title({'Comparision between theoretical RM No.2 and empirical AV response',strcat('-pure mode A-A,V-V,AV-AV, ',' for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f')) , strcat('mean(\tau_{AV})=',num2str(meanC,'%.1f'), ', median(\tau_{AV})=',num2str(medC,'%.1f'),', std(\tau_{AV})=',num2str(stdC,'%.1f')      ) }); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig1,strcat(Outdir,'\',strjoin(id(j)),'Fig1'));
     saveas(Hfig1,strcat(Outdir,'\',strjoin(id(j)),'Fig1.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -171,10 +171,10 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('RM','AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','RM No.2','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A,A-V,A-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical RM No.2 and empirical AV response',strcat('-multi mode A-A,A-V,A-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig2,strcat(Outdir,'\',strjoin(id(j)),'Fig2'));
     saveas(Hfig2,strcat(Outdir,'\',strjoin(id(j)),'Fig2.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -213,10 +213,10 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('RM','AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','RM No.2','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode AV-A,AV-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical RM No.2 and empirical AV response',strcat('-multi mode AV-A,AV-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3'));
     saveas(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -257,10 +257,10 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('RM','AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','RM No.2','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode V-A,V-V,V-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical RM No.2 and empirical AV response',strcat('-multi mode V-A,V-V,V-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4'));
     saveas(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
@@ -282,10 +282,10 @@ for j=1:size(id,2), % the index of individual in the indcell
     plot(cdevalpts,htA,'--m','LineWidth',2);
     plot(cdevalpts,htB,'-.g','LineWidth',2);
     axis([100 400 -inf inf]);
-    legend('RM','AV response','min(tA,tV)','Audio','Visual');
+    legend('RM','AV response','RM No.2','Audio','Visual');
     xlabel('Response delay ms');
     ylabel('CDF');
-    title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A,V-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
+    title({'Comparision between theoretical RM No.2 and empirical AV response',strcat('-multi mode A-A,V-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
     hold off;
     savefig(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5'));
     saveas(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
