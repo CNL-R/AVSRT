@@ -6,7 +6,7 @@
 
 ncond=13;
 CDFsteps=0.1;
-percentiles = [.05 .1 .15 .2 .25 .3 .35 .4 .45 0.5 0.55 0.6 0.65 0.7];
+percentiles = [.05 .1 .15 .2 .25 .3 .35 .4 .45 0.5 0.55 0.6 0.65 0.7 0.75 0.8];
 
 Outdir = uigetdir('D:\Arian\Projects\SMART\Outputs\mintAtBHypoth\Individual\','Select Output Directory for the Graphs!'); % this is the directory the output figures will be saved to
 %##### initializing the vectors that stores all individual analysis ########
@@ -147,7 +147,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     puremeanAV(j)=meanC;
     puremedAV(j)=medC;
     purestdAV(j)=stdC; 
-    for k = 1:length(percentiles)   %testing significance NOT assuming indep
+    for k = 1:length(percentiles),   %testing significance NOT assuming indep
         indemp=find(htC>percentiles(k),1);
         indcalIRM=find(htIRM>percentiles(k),1);
         tempthr=cdevalpts(indemp);
@@ -158,7 +158,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     
     %Test the alternative hypothesis that the population mean of sortedcelltC is less than the population mean of sortedcellSimRM.           
 
-    for k = 1:length(percentiles)   %testing significance NOT assuming indep
+    for k = 1:length(percentiles),   %testing significance NOT assuming indep
         indemp=find(htC>percentiles(k),1);
         indcalSRM=find(hRM>percentiles(k),1);
         tempthr=cdevalpts(indemp);
@@ -287,24 +287,6 @@ for j=1:size(id,2), % the index of individual in the indcell
        [multiAV_SimRMh(j,k), multiAV_SimRMpvals(j,k)] = ttest2(sortedcelltC(sortedcelltC<tempthr),sortedcellSimRM(sortedcellSimRM<tSRMthr),'Tail','left'); %p-values at each percentile are contained in the mixpvals array
     end   
     
-%     Hfig3=figure;
-%     plot(cdevalpts,hRM,'-.c','LineWidth',2);
-%     hold on;
-%     plot(cdevalpts,htC,'--b','LineWidth',2);
-%     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-%     plot(cdevalpts,htA,'--m','LineWidth',2);
-%     plot(cdevalpts,htB,'-.g','LineWidth',2);
-%     axis([100 400 -inf inf]);
-%     legend('RM','AV response','min(tA,tV)','Audio','Visual');
-%     xlabel('Response delay ms');
-%     ylabel('CDF');
-%     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode AV-A,AV-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
-%     hold off;
-%     savefig(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3'));
-%     saveas(Hfig3,strcat(Outdir,'\',strjoin(id(j)),'Fig3.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
-
-
-
     %%%%%%%Fig 4%%%%%%%%%%%%%%%    
     focusconds=[5,8,11];
     condA=focusconds(1);
@@ -347,21 +329,6 @@ for j=1:size(id,2), % the index of individual in the indcell
         [multiV_SimRMh(j,k), multiV_SimRMpvals(j,k)] = ttest2(sortedcelltC(sortedcelltC<tempthr),sortedcellSimRM(sortedcellSimRM<tSRMthr),'Tail','left');  %p-values at each percentile are contained in the mixpvals array
     end   
     
-%     Hfig4=figure;
-%     plot(cdevalpts,hRM,'-.c','LineWidth',2);
-%     hold on;
-%     plot(cdevalpts,htC,'--b','LineWidth',2);
-%     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-%     plot(cdevalpts,htA,'--m','LineWidth',2);
-%     plot(cdevalpts,htB,'-.g','LineWidth',2);
-%     axis([100 400 -inf inf]);
-%     legend('RM','AV response','min(tA,tV)','Audio','Visual');
-%     xlabel('Response delay ms');
-%     ylabel('CDF');
-%     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode V-A,V-V,V-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
-%     hold off;
-%     savefig(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4'));
-%     saveas(Hfig4,strcat(Outdir,'\',strjoin(id(j)),'Fig4.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
     %%%%%%%Fig 5%%%%%%%%%%%%%%% 
     focusconds=[7,8,12];
@@ -390,72 +357,7 @@ for j=1:size(id,2), % the index of individual in the indcell
     
    
     
-%     Hfig5=figure;
-%     plot(cdevalpts,hRM,'-.c','LineWidth',2);
-%     hold on;
-%     plot(cdevalpts,htC,'--b','LineWidth',2);
-%     plot(cdevalpts,h_min_tAtB,'-.r','LineWidth',2);
-%     plot(cdevalpts,htA,'--m','LineWidth',2);
-%     plot(cdevalpts,htB,'-.g','LineWidth',2);
-%     axis([100 400 -inf inf]);
-%     legend('RM','AV response','min(tA,tV)','Audio','Visual');
-%     xlabel('Response delay ms');
-%     ylabel('CDF');
-%     title({'Comparision between theoretical min(tA,tV) and empirical AV response',strcat('-multi mode A-A,V-V,AV-AV, ','for individual: ',strjoin(id(j))),strcat('mean(\tau_A)=',num2str(meanA,'%.1f'), ', median(\tau_A)=',num2str(medA,'%.1f'),', std(\tau_A)=',num2str(stdA,'%.1f')), strcat('mean(\tau_V)=',num2str(meanB,'%.1f'), ', median(\tau_V)=',num2str(medB,'%.1f'),', std(\tau_V)=',num2str(stdB,'%.1f'))}); % id(j) is of type cell shall be convert to string
-%     hold off;
-%     savefig(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5'));
-%     saveas(Hfig5,strcat(Outdir,'\',strjoin(id(j)),'Fig5.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
-    
-%     %%%%%%%Fig 6,7,8 based on next stage%%%%%%%%%%%%%%% 
-%     Hfig6=figure;
-%     plot(cdevalptspure{j},htpureA{j},'-.k','LineWidth',2);
-%     hold on;
-%     plot(cdevalptsmultipsA{j},htmultiA_A{j},'-.b','LineWidth',2);
-%     plot(cdevalptsmultipsV{j},htmultiV_A{j},'-.g','LineWidth',2);
-%     plot(cdevalptsmultipsAV{j},htmultiAV_A{j},'-.r','LineWidth',2);
-%     axis([100 400 -inf inf]);
-%     legend('Pure A','Repeat A','Switch V-A ','Switch AV-A');
-%     xlabel('Response delay ms');
-%     ylabel('CDF');
-%     title({'Comparision between average Audio response','-pure vs multi A-A,V-A,AV-A, ',strcat('mean(\tau_A|pu)=',num2str(puremeanA(j),'%.0f'),', mean(\tau_A|rep)=',num2str(multimeanA_A(j),'%.0f'),', mean(\tau_A|V-A)=',num2str(multimeanV_A(j),'%.0f'),', mean(\tau_A|AV-A)=',num2str(multimeanAV_A(j),'%.0f')),strcat(', std(\tau_A|pu)=',num2str(purestdA(j),'%.0f'),', std(\tau_A|rep)=',num2str(multistdA_A(j),'%.0f'),', std(\tau_A|V-A)=',num2str(multistdV_A(j),'%.0f'),', std(\tau_A|AV-A)=',num2str(multistdAV_A(j),'%.0f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
-%     %title({'Comparision between average Audio response','-pure vs multi A-A,V-A,AV-A, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_A|pu)=',num2str(puremeanA,'%.0f'),', mean(\tau_A|rep)=',num2str(multimeanA_A,'%.0f'),', mean(\tau_A|V-A)=',num2str(multimeanV_A,'%.0f'),', mean(\tau_A|AV-A)=',num2str(multimeanAV_A,'%.0f')),strcat(', std(\tau_A|pu)=',num2str(purestdA,'%.0f'),', std(\tau_A|rep)=',num2str(multistdA_A,'%.0f'),', std(\tau_A|sw V-A)=',num2str(multistdV_A,'%.0f'),', std(\tau_A|sw AV-A)=',num2str(multistdAV_A,'%.0f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
-%     hold off;
-%     savefig(Hfig6,strcat(Outdir,'\',strjoin(id(j)),'Fig6'));
-%     saveas(Hfig6,strcat(Outdir,'\',strjoin(id(j)),'Fig6.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
-%     
-%     Hfig7=figure;
-%     plot(cdevalptspure{j},htpureV{j},'-.k','LineWidth',2);
-%     hold on;
-%     plot(cdevalptsmultipsV{j},htmultiV_V{j},'-.b','LineWidth',2);
-%     plot(cdevalptsmultipsA{j},htmultiA_V{j},'-.g','LineWidth',2);
-%     plot(cdevalptsmultipsAV{j},htmultiAV_V{j},'-.r','LineWidth',2);
-%     axis([100 400 -inf inf]);
-%     legend('Pure V','Repeat V','Switch A-V ','Switch AV-V');
-%     xlabel('Response delay ms');
-%     ylabel('CDF');
-%     title({'Comparision between average Vision response','-pure vs multi V-V,A-V,AV-V, ',strcat('mean(\tau_V|pu)=',num2str(puremeanV(j),'%.0f'),', mean(\tau_V|rep)=',num2str(multimeanV_V(j),'%.0f'),', mean(\tau_V|A-V)=',num2str(multimeanA_V(j),'%.0f'),', mean(\tau_V|AV-V)=',num2str(multimeanAV_V(j),'%.0f')),strcat('std(\tau_V|pu)=',num2str(purestdV(j),'%.0f'),', std(\tau_V|rep)=',num2str(multistdV_V(j),'%.0f'),', std(\tau_V|A-V)=',num2str(multistdA_V(j),'%.0f'),', std(\tau_V|AV-V)=',num2str(multistdAV_V(j),'%.0f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
-%     %title({'Comparision between average Vision response','-pure vs multi V-V,A-V,AV-V, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_V|pu)=',num2str(puremeanV,'%.0f'),'mean(\tau_V|rep)=',num2str(multimeanV_V,'%.0f'),'mean(\tau_V|A-V)=',num2str(multimeanA_V,'%.0f'),'mean(\tau_V|AV-V)=',num2str(multimeanAV_V,'%.0f')),strcat('std(\tau_V|pu)=',num2str(purestdV,'%.0f'),'std(\tau_V|rep)=',num2str(multistdV_V,'%.0f'),'std(\tau_V|A-V)=',num2str(multistdA_V,'%.0f'),'std(\tau_V|AV-V)=',num2str(multistdAV_V,'%.0f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
-%     hold off;
-%     savefig(Hfig7,strcat(Outdir,'\',strjoin(id(j)),'Fig7'));
-%     saveas(Hfig7,strcat(Outdir,'\',strjoin(id(j)),'Fig7.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
-%     
-%     Hfig8=figure;
-%     plot(cdevalptspure{j},htpureAV{j},'-.k','LineWidth',2);
-%     hold on;
-%     plot(cdevalptsmultipsAV{j},htmultiAV_AV{j},'-.b','LineWidth',2);
-%     plot(cdevalptsmultipsA{j},htmultiA_AV{j},'-.g','LineWidth',2);
-%     plot(cdevalptsmultipsV{j},htmultiV_AV{j},'-.r','LineWidth',2);
-%     axis([100 400 -inf inf]);
-%     legend('Pure AV','Repeat AV','Switch A-AV ','Switch V-AV');
-%     xlabel('Response delay ms');
-%     ylabel('CDF');
-%     title({'Comparision between average Audio-Vision response','-pure vs multi AV-AV,A-AV,V-AV, ',strcat('mean(\tau_{AV}|pu)=',num2str(puremeanAV(j),'%.0f'),', mean(\tau_{AV}|rep)=',num2str(multimeanAV_AV(j),'%.0f'),', mean(\tau_{AV}|A-AV)=',num2str(multimeanA_AV(j),'%.0f'),', mean(\tau_{AV}|V-AV)=',num2str(multimeanV_AV(j),'%.0f')),strcat('std(\tau_{AV}|pu)=',num2str(purestdAV(j),'%.0f'),', std(\tau_{AV}|rep)=',num2str(multistdAV_AV(j),'%.0f'),', std(\tau_{AV}|A-AV)=',num2str(multistdA_AV(j),'%.0f'),', std(\tau_{AV}|V-AV)=',num2str(multistdV_AV(j),'%.0f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
-%     %title({'Comparision between average Audio-Vision response','-pure vs multi AV-AV,A-AV,V-AV, ',strcat('-excluded individuals: ',strjoin(id(excludeindvds))),strcat('mean(\tau_{AV}|pu)=',num2str(puremeanAV,'%.0f'),', mean(\tau_{AV}|rep)=',num2str(multimeanAV_AV,'%.0f'),', mean(\tau_{AV}|A-AV)=',num2str(multimeanA_AV,'%.0f'),', mean(\tau_{AV}|V-AV)=',num2str(multimeanV_AV,'%.0f')),strcat('std(\tau_{AV}|pu)=',num2str(purestdAV,'%.0f'),', std(\tau_{AV}|rep)=',num2str(multistdAV_AV,'%.0f'),', std(\tau_{AV}|A-AV)=',num2str(multistdA_AV,'%.0f'),', std(\tau_{AV}|V-AV)=',num2str(multistdV_AV,'%.0f'))}); %  id(excludeindvds) is the id number of excluded individuals and shall be convert to string
-%     hold off;
-%     savefig(Hfig8,strcat(Outdir,'\',strjoin(id(j)),'Fig8'));
-%     saveas(Hfig8,strcat(Outdir,'\',strjoin(id(j)),'Fig8.png')); %draw and save figures in the appropriate format in the specified directory and with an automatic name
 
-    
 end % for 1:size(id,2)..
 %################ END Individual Analysis  ####################
 
