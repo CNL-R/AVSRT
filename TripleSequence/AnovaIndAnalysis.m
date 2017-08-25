@@ -2,10 +2,10 @@ function [pindv,statsindv,meansindv,resultsindv] = AnovaIndAnalysis(Outdir,alpha
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
-pindv=cell(size(id,2));
-statsindv=cell(size(id,2));
-meansindv=cell(size(id,2));
-resultsindv=cell(size(id,2));
+pindv=cell(1,size(id,2));
+statsindv=cell(1,size(id,2));
+meansindv=cell(1,size(id,2));
+resultsindv=cell(1,size(id,2));
 
 for j=1:size(id,2), %over individuals
     RTAcc=[]; % for each person it should be initialized again
